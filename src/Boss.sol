@@ -16,13 +16,15 @@ address public owner;
     }
 
 modifier onlyOwner(){
-    require(msg.sender != owner, "not owner");
+    require(msg.sender == owner, "not owner");
     _;
 }
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
-    function burn(address user, uint256 amount) public onlyOwner {
+
+// in my video i added the only owner modifer here.. but realized the task was any user can burn so i removed the modifier here... thanks
+    function burn(address user, uint256 amount) public {
         _burn(user, amount);
     }
 
